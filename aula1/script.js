@@ -52,6 +52,7 @@ else {
 */
 
 //atividade do imc - com array
+/*
 let gusta = {
     nome: 'gustavp',
     peso: 55,
@@ -66,3 +67,25 @@ if (imc > 30) {
 else {
     console.log('ele está num peso tranquilo');
 }
+*/
+let empresa = {
+    valorDiario =[10, 20, 30, 40, 50],
+    somaMedia(valorDiario)
+
+}
+
+let somaMedia = function (soma) {
+    valorDiario = valorDiario
+}
+
+let empresa = [10, 15, 20, 25, 30];
+let soma = 0;
+
+for (let i = 0; empresa.length > i; i++) {
+    soma = soma + empresa[i];
+    console.log(soma);
+}
+
+let media = soma / empresa.length;
+console.log("A média é:" + media);
+
