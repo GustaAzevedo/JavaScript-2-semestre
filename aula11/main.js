@@ -6,6 +6,8 @@ let ui_Model = (function () {
         btnSub: '#save',
         tabelaEntra: '#entra',
         tabelaSai: '#sai',
+        valorEntrada: '#vEntrada',
+        valorSaida: '#vSaida'
 
     }
 
@@ -22,15 +24,18 @@ let ui_Model = (function () {
             let linha = document.createElement("tr");
             let colunaDesc = document.createElement("td");
             let colunaValor = document.createElement("td");
+            let colunaDelete = document.createElement("td");
 
             // 2. Colocar os valores nas colunas
             colunaDesc.textContent = item.desc;
             colunaValor.textContent = item.valor;
+            colunaDelete.textContent = '<button class="btn btn primary">X</button>';
 
 
             // 3. Incluir essa linha na Dom Principal(table)
             linha.appendChild(colunaDesc);
             linha.appendChild(colunaValor);
+            linha.appendChild(colunaDelete);
 
             // 4. Qual a tabela 
             let table;
@@ -42,10 +47,29 @@ let ui_Model = (function () {
 
             }
 
-            // 5. imcluir na tabela
+            // 5. incluir na tabela
             table.appendChild(linha);
 
 
+        },
+        adicionaItemTotal: function (item, tMov) {
+
+            let saida;
+            let entrada;
+
+            let totalSaida = 0;
+
+            if (tMov == "rendas") {
+                let totalEntrada = 0;
+                for (let i = 0; i < item.length; i++) {
+                    totalEntrada = item.valor + totalEntrada;
+                    console.log(item)
+                }
+                entrada = document.querySelector(DomStrings.valorEntrada).innerHTML = totalEntrada;
+            } else if (tMov == "despesas") {
+                totalSaida = item.valor + totalSaida;
+                saida = document.querySelector(DomStrings.valorSaida).innerHTML = totalSaida;
+            }
         },
         getDomStrings: function () {
             return DomStrings;
@@ -130,7 +154,9 @@ controller = function (ui, model) {
 
         //3.Adicionar na nossa UI (tabela) a entrada
         ui.addItemNaTabela(novoProd, inp.tipoMov);
+
         //4.Calcular o novo budget total
+        ui.adicionaItemTotal(novoProd, inp.tipoMov)
         //5.Atualizar a UI (totais)
 
     }
